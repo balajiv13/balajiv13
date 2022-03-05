@@ -1,0 +1,119 @@
+<header class="title-top">
+  <p class="topic">Angular Project</p>
+</header>
+<nav class="navbar">
+  <ul>
+    <li> <a href="#">Home</a> </li>
+    <li> <a href="#">Form Section</a></li>
+    <li> <a href="#">Contact Us</a> </li>
+  </ul>
+</nav>
+<section class="sec-con">
+  <form [formGroup]="form" (ngSubmit)="submit()" method="post" class="form-group">
+    <div class="flex-container">
+      <div class="row-heading">
+        <p>Basic Form</p>
+      </div>
+      <div class="form-group">
+        <label for="name">First Name</label>
+        <input type="text" formControlName="name" id="text" class="form-control">
+        <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger">
+          <div style=" font-weight: bolder; color: #dc3545" *ngIf="f['name'].errors && f['name'].errors['required']">
+            Name is required.</div>
+          <div style=" font-weight: bolder; color: #dc3545" *ngIf="f['name'].errors && f['name'].errors['minlength']">
+            First Name should be
+            atleast 3 character.</div>
+        </div>
+        <label for="lastName">Last Name</label>
+        <input type="text" formControlName="lastName" id="text" class="form-control">
+        <div *ngIf="f['name'].touched && f['lastName'].invalid" class="alert alert-danger">
+          <div style=" font-weight: bolder; color: #dc3545"
+            *ngIf="f['lastName'].errors && f['lastName'].errors['required']">Last Name is
+            required.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+        <input formControlName="email" id="email" type="text" class="form-control">
+        <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger">
+          <div style=" font-weight: bolder; color: #dc3545" *ngIf="f['email'].errors && f['email'].errors['required']">
+            Email is required.
+          </div>
+          <div style=" font-weight: bolder; color: #dc3545" *ngIf="f['email'].errors && f['email'].errors['email']">
+            Please, enter valid email
+            address.</div>
+        </div>
+      </div><br>
+      <hr>
+
+      <div class="form-group">
+        <label for="number">
+          <div class="intertext">Phone Number</div>
+        </label>
+        <input type="number" formControlName="number" id="number" class="form-control">
+        <div *ngIf="f['number'].touched && f['number'].invalid" class="alert alert-danger">
+          <div style=" font-weight: bolder; color: #dc3545"
+            *ngIf="f['number'].errors && f['number'].errors['required']">
+            Phone Number is
+            required.</div>
+        </div>
+        <div style=" font-weight: bolder; color: #dc3545" *ngIf="f['number'].errors && f['number'].errors['maxlength']">
+          Phone Number must below the 10 digit</div>
+      </div>
+
+      <div class="form-group">
+        <label for="Address">
+          <p>Address</p>
+        </label>
+        <textarea formControlName="Address" id="Address" type="text" class="form-control address-st">
+      </textarea>
+        <div *ngIf="f['Address'].touched && f['Address'].invalid" class="alert alert-danger">
+          <div style=" font-weight: bolder; color: #dc3545"
+            *ngIf="f['Address'].errors && f['Address'].errors['required']">
+            Address is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">
+          <p>Password</p>
+        </label>
+        <input formControlName="password" type="password" (change)="disp()" name="password" [(ngModel)]="pass"
+          class="form-control" id="password">
+        <div *ngIf="f['password'].touched && f['password'].invalid" class="alert alert-danger">
+          <div style=" font-weight: bolder; color: #dc3545"
+            *ngIf="f['password'].errors && f['password'].errors['required']">
+            Password is required.
+            <div style=" font-weight: bolder; color: #dc3545"
+              *ngIf="f['password'].errors && f['password'].errors['minlength']">
+              Strong Password contain atleast 8 Characters.</div>
+          </div>
+        </div>
+        <label for="password">
+          <p>Password</p>
+        </label>
+        <input formControlName="conpassword" type="password" (change)="disp()" [(ngModel)]="conpass" name="conpassword"
+          class="form-control" id="password">
+        <div *ngIf="f['conpassword'].touched && f['conpassword'].invalid" class="alert alert-danger">
+          <div style=" font-weight: bolder; color: #dc3545"
+            *ngIf="f['conpassword'].errors && f['conpassword'].errors['required']">
+            Password is required.
+            <div style=" font-weight: bolder; color: #dc3545"
+              *ngIf="f['conpassword'].errors && f['conpassword'].errors['minlength']">
+              Strong Password contain atleast 8 Characters.</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p *ngIf="show; else notshow" style="color: rgb(78, 145, 78);"> Password is Matched Good to go :) </p>
+      </div>
+      <ng-template #notshow>
+        <p style="color: #dc3545;"> Password is not matched Check again :( </p>
+      </ng-template>
+
+      <button class="btn btn-primary" [disabled]="form.invalid" type="submit">Sign Up</button>
+    </div>
+  </form>
+</section>
